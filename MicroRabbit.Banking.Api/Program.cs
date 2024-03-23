@@ -1,3 +1,7 @@
+using MicroRabbit.Banking.Api.Extentions;
+using MicroRabbit.Banking.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace MicroRabbit.Banking.Api
 {
     public class Program
@@ -12,6 +16,11 @@ namespace MicroRabbit.Banking.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<BankingDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BankingDbConnection"));
+            });
+            builder.Services.RegisterServices();
 
             var app = builder.Build();
 
