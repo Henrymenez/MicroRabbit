@@ -1,6 +1,8 @@
+using MediatR;
 using MicroRabbit.Banking.Api.Extentions;
 using MicroRabbit.Banking.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroRabbit.Banking.Api
 {
@@ -21,6 +23,7 @@ namespace MicroRabbit.Banking.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BankingDbConnection"));
             });
             builder.Services.RegisterServices();
+           
 
             var app = builder.Build();
 
